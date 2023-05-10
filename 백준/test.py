@@ -1,18 +1,24 @@
-for t in range(int(input())):
-    n = int(input())
-    arr = [list(map(int, input().split())), list(map(int, input().split()))]
-    dp = [[0] * n, [0] * n]
-    dp[0][0] = arr[0][0]
-    dp[1][0] = arr[1][0]
-    for i in range(1, n):
-        dp[0][i] = max(
-            dp[1][i - 1] + arr[0][i],
-            dp[0][i - 2] + arr[0][i] if i > 1 else -1,
-            dp[1][i - 2] + arr[0][i] if i > 1 else -1,
-        )
-        dp[1][i] = max(
-            dp[0][i - 1] + arr[1][i],
-            dp[1][i - 2] + arr[1][i] if i > 1 else -1,
-            dp[0][i - 2] + arr[1][i] if i > 1 else -1,
-        )
-    print(max(max(dp[0]), max(dp[1])))
+from collections import deque
+
+
+def bfs(u):
+    global K
+    Q = deque()
+    Q.append((u, 0))
+    while Q:
+        x, c = Q.popleft()
+        if x == K:
+            return c
+        for nx in [2 * x, x - 1, x + 1]:
+            if 0 <= nx < 100001 and not v[nx]:
+                v[nx] = True
+                if nx == 2 * x and nx != 0:
+                    Q.append((nx, c))
+                else:
+                    Q.append((nx, c + 1))
+
+
+global K
+N, K = map(int, input().split())
+v = [False] * 100001
+print(bfs(N))
