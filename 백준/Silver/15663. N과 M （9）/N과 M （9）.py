@@ -1,5 +1,3 @@
-from itertools import combinations
-
 N, M = map(int, input().split())
 arr = sorted(map(int, input().split()))
 visited = [False] * N
