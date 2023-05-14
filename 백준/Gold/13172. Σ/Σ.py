@@ -1,5 +1,3 @@
-import math
-
 M = int(input())
 X = 1000000007
 ans = 0
