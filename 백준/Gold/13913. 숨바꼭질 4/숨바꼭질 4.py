@@ -14,13 +14,10 @@ while q:
             q.append((nx, c + 1))
 
 print(c)
-
 arr = []
 i = K
 while i != N:
     arr.append(i)
     i = prev[i]
 arr.append(N)
-
-for i in range(len(arr)-1, -1, -1):
-    print(arr[i], end=' ')
+print(*arr[::-1])
