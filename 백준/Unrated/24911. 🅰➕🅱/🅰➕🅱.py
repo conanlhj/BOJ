@@ -15,27 +15,34 @@ d = {
 
 A = input()
 B = input()
-if A in d and B in d:
-     sum_ = str(d[A]+d[B])
+if A in d:
+     a = d[A]
+else:
+     a = 0
+if B in d:
+     b = d[B]
+else:
+     b = 0
+sum_ = str(a+b)
 
-     dp = [int(1e9)] * (len(sum_)+1)
-     dp[0] = 0
-     prev = [""] * (len(sum_)+1)
+dp = [int(1e9)] * (len(sum_)+1)
+dp[0] = 0
+prev = [""] * (len(sum_)+1)
 
-     for i in range(1, len(sum_)+1):
-          for key, value in d.items():
-               value = str(value)
-               if i - len(value) < 0:
-                    continue
-               
-               if value == sum_[i-len(value):i]:
-                    if dp[i] > dp[i-len(value)]+1:
-                         dp[i] = dp[i-len(value)]+1
-                         prev[i] = key
+for i in range(1, len(sum_)+1):
+     for key, value in d.items():
+          value = str(value)
+          if i - len(value) < 0:
+               continue
+          
+          if value == sum_[i-len(value):i]:
+               if dp[i] > dp[i-len(value)]+1:
+                    dp[i] = dp[i-len(value)]+1
+                    prev[i] = key
 
-     stack = []
-     i = len(prev)-1
-     while i > 0:
-          stack.append(prev[i])
-          i -= len(str(d[prev[i]]))
-     print("".join(stack[::-1]))
+stack = []
+i = len(prev)-1
+while i > 0:
+     stack.append(prev[i])
+     i -= len(str(d[prev[i]]))
+print("".join(stack[::-1]))
