@@ -1,7 +1,10 @@
-n, a, w = map(str, input().split())
-while n != '#' and a != '0' and w != '0':
-    if int(a) > 17 or int(w) >= 80:
-        print(n, "Senior")
+while True:
+    com = input()
+    if com == "# 0 0":
+        break
+    
+    name, age, kg = com.split()
+    if int(age) > 17 or int(kg) >= 80:
+        print(name, "Senior")
     else:
-        print(n, "Junior")
-    n, a, w = map(str, input().split())
+        print(name, "Junior")
