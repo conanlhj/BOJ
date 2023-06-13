@@ -1,13 +1,7 @@
-import math
-a, b = sorted(map(int, input().split()))
-x, y = map(int, input().split())
-x = abs(x)
-if not 0 <= y < x:
-    print("Unknwon Number")
-    exit()
-p = math.ceil((a - y) / x)
-q = math.floor((b - y) / x)
-if q - p == 0:
-    print(p * x + y)
-else:
-    print("Unknwon Number")
+import math as m
+a,b=sorted(map(int,input().split()))
+x,y=map(int,input().split())
+x,f=abs(x),True
+if not 0<=y<x:f=False
+p,q=m.ceil((a-y)/x),m.floor((b-y)/x)
+print(p*x+y if q-p==0 and f else "Unknwon Number")
