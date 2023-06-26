@@ -1,12 +1,12 @@
 N, K = map(int, input().split())
-L = [0] + list(map(int, input().split()))
-dp = [[1] * N for _ in range(2)]
-for i in range(1, N):
-  if L[i] <= K:
-    dp[0][i] = dp[0][i-1] + 1
-    dp[1][i] = dp[1][i-1] + 1
-  else:
-    dp[0][i] = 1
-    dp[1][i] = max(dp[0][i-1] + 1, 1)
-
-print(max(max(dp[0]), max(dp[1])))
+L = list(map(int, input().split()))
+arr = [1]
+for i in L:
+    if i > K:
+        arr.append(1)
+    else:
+        arr[-1] += 1
+if len(arr) == 1:
+    print(arr[0])
+else:
+    print(max([arr[i+1] + arr[i] for i in range(len(arr)-1)]))
