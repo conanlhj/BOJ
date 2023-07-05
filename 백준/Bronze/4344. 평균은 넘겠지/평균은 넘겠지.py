@@ -1,10 +1,15 @@
-r = []
-for i in range(int(input())):
-    lst = list(map(int, input().split()))
-    avg = sum(lst[1:]) / lst[0]
-    cnt = 0
-    for i in lst[1:]:
-        if i > avg:
-            cnt += 1
-    res = 100 * cnt / lst[0]
-    print("%.3f" % res + "%")
+n=int(input())
+
+while(n>0):
+    sum=0
+    cnt=0
+    score=list(map(int,input().split()))
+    for i in range(len(score)):
+        if i != 0:
+            sum+=score[i]
+    for i in range(len(score)):
+        if(i != 0):
+            if(sum/(len(score)-1)<score[i]):
+                cnt+=1
+    print("{0:0.3f}%".format(cnt/(len(score)-1)*100))
+    n-=1
